@@ -23,10 +23,12 @@ public class Node {
 	}
 
 	public void accept(Packet p) throws UnknownDestinationException {
+		p.track("Node " + name + " accepts packet");
 		this.send(p);
 	}
 
 	public void send(Packet p) throws UnknownDestinationException {
+		p.track("Node " + name + " sends packet to next node");
 		nextNode.accept(p);
 	}
 

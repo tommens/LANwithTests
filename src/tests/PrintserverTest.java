@@ -3,6 +3,8 @@ package tests;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import production.*;
+
 /**
  * @author tommens
  *
@@ -12,6 +14,9 @@ import static org.junit.Assert.*;
  * Window>Preferences>Java>Code Generation.
  */
 public class PrintserverTest {
+
+	Workstation w;
+	Printserver ps;
 
 	@Test
 	public void testPrintserver() {

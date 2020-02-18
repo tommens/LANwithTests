@@ -15,12 +15,12 @@ public class PacketTest {
 	private Packet p1, p2, p3;
 
 	@Before
-	public void before() throws Exception {
-		Node n1 = new Node("production.Node 1");
-		Node n2 = new Node("production.Node 2");
-		p1 = new Packet("production.Packet 1", n1);
-		p2 = new Packet("production.Packet 2", n1); // same addressee as p1
-		p3 = new Packet("production.Packet 2", n2); // same contents as p2
+	public void before() {
+		Node n1 = new Node("Node 1");
+		Node n2 = new Node("Node 2");
+		p1 = new Packet("Packet 1", n1);
+		p2 = new Packet("Packet 2", n1); // same addressee as p1
+		p3 = new Packet("Packet 2", n2); // same contents as p2
 	}
 
 	@Test

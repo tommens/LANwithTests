@@ -30,10 +30,10 @@ public class Workstation extends Node {
 	}
 
 	public void accept(Packet p) throws UnknownDestinationException {
-		if(p.originator == this)
+		if(p.originator == this) {
+			p.track("Packet has cycled through network without finding its destination");
 			throw new UnknownDestinationException(
-				"production.Packet with contents " + p.contents +
-				" has unknown destination " + p.addressee.name);
+				"Packet has unknown destination " + p.addressee.name); }
 		else
 			super.accept(p);
 	}

@@ -15,10 +15,19 @@ public class Packet {
 
 	public Node addressee;
 
+	public boolean tracked = false; // when set to true, prints extra info when running the code
+
+	public void setTracking(boolean t) {
+		tracked = t;
+	}
+
+	public void track(String s) {
+		if (tracked) System.out.println(s);
+	}
+
 	public Packet(String c, Node a) {
 		contents = c;
 		addressee = a;
-
 	}
 
 }

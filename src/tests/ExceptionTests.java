@@ -9,23 +9,27 @@ import production.*;
  */
 public class ExceptionTests {
 
-	Workstation w;
-	Printserver s;
+	Workstation w1,w2;
+	Printserver s1,s2;
 	Packet p;
 
 	@Before
 	public void before() {
-		//super.setUp();
-		w = new Workstation("production.Workstation");
-		s = new Printserver("production.Printserver",w);
-		w.nextNode = s;
-		p = new Packet("'some text'",new Node("production.Node"));
+		w2 = new Workstation("My second workstation");
+		w1 = new Workstation("My workstation",w2);
+		s1 = new Printserver("My printserver");
+		s2 = new Printserver("My second printserver",w1);
+		s1.nextNode = s2;
+		w2.nextNode = s1;
+		p = new Packet("some text",new Node("My node"));
+		p.setTracking(true);
 	}
 
+	//Testing a package that is sent to an unknown destination
 	@Test(expected = UnknownDestinationException.class)
 	public void testCycling() throws UnknownDestinationException {
-		p.originator = w;
-		w.send(p); // this should throw an production.UnknownDestinationException
+		p.originator = w1;
+		w1.send(p); // this should throw an production.UnknownDestinationException
 	}
 
 }

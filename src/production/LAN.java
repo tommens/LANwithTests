@@ -11,17 +11,27 @@ public class LAN {
 		Workstation w1 = new Workstation("Workstation1");
 		Workstation w2 = new Workstation("Workstation2");
 		Workstation w3 = new Workstation("Workstation3");
-		Printserver p1 = new Printserver("Printer1");
-		Printserver p2 = new Printserver("Printer2");
+		Printserver ps1 = new Printserver("Printer1");
+		Printserver ps2 = new Printserver("Printer2");
 
 		w1.nextNode = w2;
-		w2.nextNode = p1;
-		p1.nextNode = w3;
-		w3.nextNode = p2;
-		p2.nextNode = w1;
+		w2.nextNode = ps1;
+		ps1.nextNode = w3;
+		w3.nextNode = ps2;
+		ps2.nextNode = w1;
 
-		Packet p = new Packet("BlahBlah", p2);
+		Packet p = new Packet("BlahBlah", ps2);
 
+		//Send the packet p to its destination printserver ps2
+		System.out.println("******* Without tracking: *******");
+		w1.originate(p);
+
+	 	System.out.println("******* With tracking: *******");
+		p.setTracking(true);
+		w1.originate(p);
+
+		System.out.println();
+		p.addressee=new Node("Printer3");
 		w1.originate(p);
 	}
 }

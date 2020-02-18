@@ -12,14 +12,7 @@ public class UnknownDestinationException extends Exception {
 
 	/**
 	 * Constructor for production.UnknownDestinationException.
-	 */
-	public UnknownDestinationException() {
-		this("production.Packet has unknown destination");
-	}
-
-	/**
-	 * Constructor for production.UnknownDestinationException.
-	 * @param arg0
+	 * @param arg0: This string parameter provides more information about the exception
 	 */
 	public UnknownDestinationException(String arg0) {
 		super(arg0);

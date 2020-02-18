@@ -19,10 +19,10 @@ public class NodeTest {
 	private Node n, n1, n2;
 
 	@Before
-	public void before() throws Exception {
-		n = new Node("production.Node 1");
-		n1 = new Node("production.Node 1"); // same name as n
-		n2 = new Node("production.Node 2",n1);
+	public void before() {
+		n = new Node("Node 1");
+		n1 = new Node("Node 1"); // same name as n
+		n2 = new Node("Node 2",n1);
 		n1.nextNode = n2;
 	}
 
