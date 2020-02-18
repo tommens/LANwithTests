@@ -9,9 +9,11 @@ import production.*;
  */
 public class ExceptionTests {
 
-	Workstation w1,w2;
-	Printserver s1,s2;
-	Packet p;
+	private Workstation w1,
+						w2;
+	private Printserver s1,
+						s2;
+	private Packet p;
 
 	@Before
 	public void before() {

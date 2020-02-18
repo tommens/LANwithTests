@@ -15,8 +15,8 @@ import production.*;
  */
 public class PrintserverTest {
 
-	Workstation w;
-	Printserver ps;
+	private Workstation w;
+	private Printserver ps;
 
 	@Test
 	public void testPrintserver() {

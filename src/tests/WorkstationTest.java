@@ -11,13 +11,12 @@ import production.*;
  */
 public class WorkstationTest {
 
-	Workstation w;
-	Printserver s;
-	Packet p;
-	
+	private Workstation w;
+	private Printserver s;
+	private Packet p;
 
 	@Before
-	public void before() throws Exception {
+	public void before() {
 		w = new Workstation("production.Workstation");
 		s = new Printserver("production.Printserver",w);
 		w.nextNode = s;
@@ -28,10 +27,10 @@ public class WorkstationTest {
 	public void testOriginator() {
 		assertNull(p.originator);
 		w.originate(p); // this results in output "production.Packet has unknown destination"
-		Assert.assertEquals(p.originator,w);
+		assertEquals(p.originator,w);
 		p.addressee = s;
 		w.originate(p); // this results in output "Printing packet with contents 'some text'
-		Assert.assertEquals(p.originator,w);
+		assertEquals(p.originator,w);
 	}
 
 	@Test(expected = UnknownDestinationException.class)

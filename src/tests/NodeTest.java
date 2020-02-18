@@ -16,7 +16,9 @@ import static org.junit.Assert.*;
 
 public class NodeTest {
 
-	private Node n, n1, n2;
+	private Node n,
+				 n1,
+			     n2;
 
 	@Before
 	public void before() {
@@ -28,13 +30,13 @@ public class NodeTest {
 
 	@Test
 	public void testNextnode() {
-		Assert.assertEquals(n1.nextNode,n2);
-		Assert.assertEquals(n2.nextNode,n1);
+		assertEquals(n1.nextNode,n2);
+		assertEquals(n2.nextNode,n1);
 	}
 
 	@Test
 	public void testName() {
-		Assert.assertEquals(n.name,n1.name);
+		assertEquals(n.name,n1.name);
 		assertNotSame(n1.name,n2.name);
 	}
 }
