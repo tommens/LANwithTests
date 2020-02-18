@@ -1,9 +1,11 @@
+package production;
+
 /**
  * @author tommens
  *
  * Instances of this class represent packets that can be sent over
- * the LAN to perform a certain task.For the time being, they can only be
- * printed on a Printserver.
+ * the production.LAN to perform a certain task.For the time being, they can only be
+ * printed on a production.Printserver.
  * 
  */
 public class Packet {

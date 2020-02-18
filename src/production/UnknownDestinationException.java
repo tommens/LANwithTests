@@ -1,3 +1,5 @@
+package production;
+
 /**
  * @author tommens
  *
@@ -9,14 +11,14 @@
 public class UnknownDestinationException extends Exception {
 
 	/**
-	 * Constructor for UnknownDestinationException.
+	 * Constructor for production.UnknownDestinationException.
 	 */
 	public UnknownDestinationException() {
-		this("Packet has unknown destination");
+		this("production.Packet has unknown destination");
 	}
 
 	/**
-	 * Constructor for UnknownDestinationException.
+	 * Constructor for production.UnknownDestinationException.
 	 * @param arg0
 	 */
 	public UnknownDestinationException(String arg0) {

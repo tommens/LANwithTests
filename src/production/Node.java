@@ -1,3 +1,5 @@
+package production;
+
 /**
  * @author tommens
  *
@@ -16,7 +18,7 @@ public class Node {
 	}
 
 	public Node(String s, Node n) {
-		this(s); //calls the constructor Node(String s)
+		this(s); //calls the constructor production.Node(String s)
 		nextNode = n;
 	}
 
@@ -24,7 +26,7 @@ public class Node {
 		this.send(p);
 	}
 
-	protected void send(Packet p) throws UnknownDestinationException {
+	public void send(Packet p) throws UnknownDestinationException {
 		nextNode.accept(p);
 	}
 

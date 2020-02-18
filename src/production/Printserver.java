@@ -1,9 +1,11 @@
+package production;
+
 /**
  * @author tommens
  *
- * A special kind of Node that has the additional functionality that
- * allows it to print packets it receives, provided that the Printserver
- * node is the addressee of the Packet.
+ * A special kind of production.Node that has the additional functionality that
+ * allows it to print packets it receives, provided that the production.Printserver
+ * node is the addressee of the production.Packet.
  * 
  */
 public class Printserver extends Node {

@@ -1,4 +1,7 @@
+package tests;
+
 import org.junit.*;
+import production.*;
 
 import static org.junit.Assert.*;
 
@@ -17,21 +20,21 @@ public class NodeTest {
 
 	@Before
 	public void before() throws Exception {
-		n = new Node("Node 1");
-		n1 = new Node("Node 1"); // same name as n
-		n2 = new Node("Node 2",n1);
+		n = new Node("production.Node 1");
+		n1 = new Node("production.Node 1"); // same name as n
+		n2 = new Node("production.Node 2",n1);
 		n1.nextNode = n2;
 	}
 
 	@Test
 	public void testNextnode() {
-		assertEquals(n1.nextNode,n2);
-		assertEquals(n2.nextNode,n1);
+		Assert.assertEquals(n1.nextNode,n2);
+		Assert.assertEquals(n2.nextNode,n1);
 	}
 
 	@Test
 	public void testName() {
-		assertEquals(n.name,n1.name);
+		Assert.assertEquals(n.name,n1.name);
 		assertNotSame(n1.name,n2.name);
 	}
 }
