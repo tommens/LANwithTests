@@ -25,18 +25,18 @@ public class NodeTest {
 		n = new Node("Node 1");
 		n1 = new Node("Node 1"); // same name as n
 		n2 = new Node("Node 2",n1);
-		n1.nextNode = n2;
+		n1.setNextNode(n2);
 	}
 
 	@Test
 	public void testNextnode() {
-		assertEquals(n1.nextNode,n2);
-		assertEquals(n2.nextNode,n1);
+		assertEquals(n1.getNextNode(),n2);
+		assertEquals(n2.getNextNode(),n1);
 	}
 
 	@Test
 	public void testName() {
-		assertEquals(n.name,n1.name);
-		assertNotSame(n1.name,n2.name);
+		assertEquals(n.getName(), n1.getName());
+		assertNotSame(n1.getName(), n2.getName());
 	}
 }

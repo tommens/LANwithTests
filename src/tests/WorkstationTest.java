@@ -19,7 +19,7 @@ public class WorkstationTest {
 	public void before() {
 		w = new Workstation("production.Workstation");
 		s = new Printserver("production.Printserver",w);
-		w.nextNode = s;
+		w.setNextNode(s);
 		p = new Packet("'some text'",new Node("production.Node")); // create a packet with an addressee that is not part of the production.LAN
 	}
 
