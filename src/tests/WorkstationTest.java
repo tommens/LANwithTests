@@ -11,32 +11,54 @@ import production.*;
  */
 public class WorkstationTest {
 
-	private Workstation w;
+	private Workstation w,
+						w2;
 	private Printserver s;
 	private Packet p;
 
 	@Before
 	public void before() {
-		w = new Workstation("production.Workstation");
-		s = new Printserver("production.Printserver",w);
-		w.nextNode = s;
-		p = new Packet("'some text'",new Node("production.Node")); // create a packet with an addressee that is not part of the production.LAN
+		w = new Workstation("Workstation 1");
+		w2 = new Workstation("Workstation 2");
+		w.setNextNode(w2);
+		s = new Printserver("Printserver",w);
+		w2.setNextNode(s);
+		p = new Packet("some text",new Node("Node")); // create a packet with an addressee that is not part of the production.LAN
 	}
 
 	@Test
 	public void testOriginator() {
-		assertNull(p.originator);
-		w.originate(p); // this results in output "production.Packet has unknown destination"
-		assertEquals(p.originator,w);
-		p.addressee = s;
-		w.originate(p); // this results in output "Printing packet with contents 'some text'
-		assertEquals(p.originator,w);
+		assertNull(p.originator); // initially, packet has no origin yet
+		w.originate(p); // this results in output "Packet has unknown destination"
+		assertSame(p.originator,w);
 	}
 
+	@Test
+	public void testOriginator2() {
+		p.addressee = s;
+		w.originate(p); // this results in output "Printing packet with contents 'some text'
+		assertSame(p.originator,w);
+	}
+
+	@Test
+	public void testAddressee() {
+		p.addressee = w2;
+		w.originate(p);
+		// after cycling through the network, the package should reach its destination workstation
+		assertSame(w2,p.current);
+	}
+
+
 	@Test(expected = UnknownDestinationException.class)
-	public void testCycling() throws UnknownDestinationException {
+	public void testCyclingWithException() throws UnknownDestinationException {
 		  p.originator = w;
 		  w.send(p); // this should throw an production.UnknownDestinationException
 		}
+
+	// Same test as previous one, except that it does not raise an exception, since the originate method catches the exception...
+	@Test
+	public void testCyclingWithoutException() {
+		w.originate(p);
+	}
 
 }

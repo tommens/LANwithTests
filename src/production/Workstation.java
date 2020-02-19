@@ -21,6 +21,7 @@ public class Workstation extends Node {
 	public void originate(Packet p) {
 		try {
 			p.originator = this;
+			p.current = this;
 			this.send(p);
 			}
 		catch(UnknownDestinationException e)
@@ -33,8 +34,12 @@ public class Workstation extends Node {
 		if(p.originator == this) {
 			p.track("Packet has cycled through network without finding its destination");
 			throw new UnknownDestinationException(
-				"Packet has unknown destination " + p.addressee.name); }
+				"Packet has unknown destination " + p.addressee.getName()); }
 		else
+			if (p.addressee == this) {
+				p.track("Package has reached its destination " + getName());
+			}
+			else
 			super.accept(p);
 	}
 }

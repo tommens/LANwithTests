@@ -9,11 +9,13 @@ package production;
  * 
  */
 public class Packet {
-	public String contents;
+	public String contents; // the contents of the packet
 
-	public Node originator;
+	public Node originator; // the node where the packet originates from
 
-	public Node addressee;
+	public Node addressee; // the target destination of the packet
+
+	public Node current; // the current node in the network where the packet is
 
 	public boolean tracked = false; // when set to true, prints extra info when running the code
 
@@ -24,6 +26,7 @@ public class Packet {
 	public void track(String s) {
 		if (tracked) System.out.println(s);
 	}
+
 
 	public Packet(String c, Node a) {
 		contents = c;

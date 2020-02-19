@@ -16,11 +16,23 @@ import production.*;
 public class PrintserverTest {
 
 	private Workstation w;
-	private Printserver ps;
+	private Printserver s;
+	private Packet p;
+
+	@Before
+	public void before() {
+		w = new Workstation("Workstation");
+		s = new Printserver("Printserver",w);
+		w.setNextNode(s);
+		p = new Packet("text to be printed on Printserver",s);
+	}
+
 
 	@Test
 	public void testPrintserver() {
-		assertEquals(1,1);
+		w.originate(p);
+		assertSame(s,p.current);
+		//after iterating over the network, the package p should have travelled to its destination printserver s, that will have received the packet and printed its contents...
 	}
 
 }
