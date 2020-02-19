@@ -34,9 +34,4 @@ public class NodeTest {
 		assertEquals(n2.getNextNode(),n1);
 	}
 
-	@Test
-	public void testName() {
-		assertEquals(n.getName(), n1.getName());
-		assertNotSame(n1.getName(), n2.getName());
-	}
 }

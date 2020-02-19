@@ -1,5 +1,7 @@
 package production;
 
+import org.junit.*;
+
 /**
  * @author tommens
  *
@@ -9,36 +11,33 @@ package production;
  * 
  */
 public class Node {
+
 	private String name;
+
+	public String toString() {
+		return name;
+	}
 
 	private Node nextNode;
 
 	public Node(String s) {
-		setName(s);
+		name = s;
 	}
 
 	public Node(String s, Node n) {
 		this(s); //calls the constructor production.Node(String s)
-		setNextNode(n);
+		nextNode =n;
 	}
 
 	public void accept(Packet p) throws UnknownDestinationException {
-		p.track("Node " + getName() + " accepts packet");
+		p.track("Node " + this + " accepts packet");
 		this.send(p);
 	}
 
 	public void send(Packet p) throws UnknownDestinationException {
 		p.current = getNextNode();
-		p.track("Node " + getName() + " sends packet to next node " + getNextNode().getName());
+		p.track("Node " + this + " sends packet to next node " + getNextNode());
 		getNextNode().accept(p);
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Node getNextNode() {

@@ -19,12 +19,12 @@ public class Printserver extends Node {
 	}
 	
 	public void print(Packet p) {
-		System.out.println(getName() + " prints: " + p.contents);
+		System.out.println(this + " prints: " + p.contents);
 	}
 
 	public void accept(Packet p) throws UnknownDestinationException {
 		if(p.addressee == this) {
-			p.track("Package has reached its destination " + getName());
+			p.track("Package has reached its destination " + this);
 			this.print(p);
 		}
 		else

@@ -28,7 +28,7 @@ public class PacketTest {
 	@Test
 	public void testPacketContents() {
 		assertNotSame(p1,p2); // p1 and p2 have a different contents
-		assertEquals(p2.contents,p3.contents); // to be done: p2 and p3 have the same contents
+		assertEquals(p2.contents,p3.contents); // p2 and p3 have the same contents
 	}
 
 	@Test
@@ -37,8 +37,7 @@ public class PacketTest {
 		assertNotSame(p1,p3);
 		
 		// p1 and p2 have the same addressee
-		assertEquals(p1.addressee,p2.addressee);
-		assertEquals(p1.addressee.getName(), p2.addressee.getName());
+		assertSame(p1.addressee,p2.addressee);
 	}
 
 }
