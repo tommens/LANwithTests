@@ -21,8 +21,8 @@ public class ExceptionTests {
 		w1 = new Workstation("My workstation",w2);
 		s1 = new Printserver("My printserver");
 		s2 = new Printserver("My second printserver",w1);
-		s1.nextNode = s2;
-		w2.nextNode = s1;
+		s1.setNextNode(s2);
+		w2.setNextNode(s1);
 		p = new Packet("some text",new Node("My node"));
 		p.setTracking(true);
 	}

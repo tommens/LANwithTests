@@ -14,11 +14,11 @@ public class LAN {
 		Printserver ps1 = new Printserver("Printer1");
 		Printserver ps2 = new Printserver("Printer2");
 
-		w1.nextNode = w2;
-		w2.nextNode = ps1;
-		ps1.nextNode = w3;
-		w3.nextNode = ps2;
-		ps2.nextNode = w1;
+		w1.setNextNode(w2);
+		w2.setNextNode(ps1);
+		ps1.setNextNode(w3);
+		w3.setNextNode(ps2);
+		ps2.setNextNode(w1);
 
 		Packet p = new Packet("BlahBlah", ps2);
 
