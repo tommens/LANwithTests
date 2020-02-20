@@ -13,7 +13,7 @@ public class Packet {
 
 	public Node originator; // the node where the packet originates from
 
-	public Node addressee; // the target destination of the packet
+	private Node destination; // the target destination of the packet
 
 	public Node current; // the current node in the network where the packet is
 
@@ -27,10 +27,16 @@ public class Packet {
 		if (tracked) System.out.println(s);
 	}
 
-
 	public Packet(String c, Node a) {
 		contents = c;
-		addressee = a;
+		setDestination(a);
 	}
 
+	public Node getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Node destination) {
+		this.destination = destination;
+	}
 }

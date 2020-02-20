@@ -34,9 +34,9 @@ public class Workstation extends Node {
 		if(p.originator == this) {
 			p.track("Packet has cycled through network without finding its destination");
 			throw new UnknownDestinationException(
-				"Packet has unknown destination " + p.addressee); }
+				"Packet has unknown destination " + p.getDestination()); }
 		else
-			if (p.addressee == this) {
+			if (p.getDestination() == this) {
 				p.track("Package has reached its destination " + this);
 			}
 			else

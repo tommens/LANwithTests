@@ -37,7 +37,7 @@ public class PacketTest {
 		assertNotSame(p1,p3);
 		
 		// p1 and p2 have the same addressee
-		assertSame(p1.addressee,p2.addressee);
+		assertSame(p1.getDestination(), p2.getDestination());
 	}
 
 }

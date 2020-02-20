@@ -1,7 +1,5 @@
 package production;
 
-import org.junit.*;
-
 /**
  * @author tommens
  *
@@ -14,9 +12,6 @@ public class Node {
 
 	private String name;
 
-	public String toString() {
-		return name;
-	}
 
 	private Node nextNode;
 
@@ -27,6 +22,10 @@ public class Node {
 	public Node(String s, Node n) {
 		this(s); //calls the constructor production.Node(String s)
 		nextNode =n;
+	}
+
+	public String toString() {
+		return name;
 	}
 
 	public void accept(Packet p) throws UnknownDestinationException {

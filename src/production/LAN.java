@@ -31,11 +31,11 @@ public class LAN {
 		w1.originate(p);
 
 		System.out.println();
-		p.addressee=new Node("Printer3");
+		p.setDestination(new Node("Printer3"));
 		w1.originate(p);
 
 		System.out.println();
-		p.addressee=w3;
+		p.setDestination(w3);
 		w1.originate(p);
 	}
 }

@@ -35,14 +35,14 @@ public class WorkstationTest {
 
 	@Test
 	public void testOriginator2() {
-		p.addressee = s;
+		p.setDestination(s);
 		w.originate(p); // this results in output "Printing packet with contents 'some text'
 		assertSame(p.originator,w);
 	}
 
 	@Test
 	public void testAddressee() {
-		p.addressee = w2;
+		p.setDestination(w2);
 		w.originate(p);
 		// after cycling through the network, the package should reach its destination workstation
 		assertSame(w2,p.current);

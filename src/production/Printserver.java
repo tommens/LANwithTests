@@ -23,7 +23,7 @@ public class Printserver extends Node {
 	}
 
 	public void accept(Packet p) throws UnknownDestinationException {
-		if(p.addressee == this) {
+		if(p.getDestination() == this) {
 			p.track("Package has reached its destination " + this);
 			this.print(p);
 		}
