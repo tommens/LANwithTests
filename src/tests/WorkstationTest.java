@@ -23,7 +23,7 @@ public class WorkstationTest {
 		w.setNextNode(w2);
 		s = new Printserver("Printserver",w);
 		w2.setNextNode(s);
-		p = new Packet("some text",new Node("Node")); // create a packet with an addressee that is not part of the production.LAN
+		p = new Packet("some text",new Printserver("Printserver 2")); // create a packet with an addressee that is not part of the LAN
 	}
 
 	@Test

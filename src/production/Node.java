@@ -4,11 +4,11 @@ package production;
  * @author tommens
  *
  * Instances of this class represent nodes in the local area network.
- * Conceptually, this is an abstract class that can be refined by specific
+ * This is an abstract class that can be refined by specific
  * kinds of nodes, such as Printservers and Workstations.
  * 
  */
-public class Node {
+public abstract class Node {
 
 	private String name;
 
@@ -20,7 +20,7 @@ public class Node {
 	}
 
 	public Node(String s, Node n) {
-		this(s); //calls the constructor production.Node(String s)
+		this(s); //calls the constructor Node(String s)
 		nextNode =n;
 	}
 

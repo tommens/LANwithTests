@@ -18,8 +18,8 @@ public class PacketTest {
 
 	@Before
 	public void before() {
-		Node n1 = new Node("Node 1");
-		Node n2 = new Node("Node 2");
+		Workstation n1 = new Workstation("W1");
+		Workstation n2 = new Workstation("W2");
 		p1 = new Packet("Packet 1", n1);
 		p2 = new Packet("Packet 2", n1); // same addressee as p1
 		p3 = new Packet("Packet 2", n2); // same contents as p2

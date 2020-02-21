@@ -16,15 +16,13 @@ import static org.junit.Assert.*;
 
 public class NodeTest {
 
-	private Node n,
-				 n1,
+	private Node n1,
 			     n2;
 
 	@Before
 	public void before() {
-		n = new Node("Node 1");
-		n1 = new Node("Node 1"); // same name as n
-		n2 = new Node("Node 2",n1);
+		n1 = new Workstation("w1");
+		n2 = new Printserver("ps1",n1);
 		n1.setNextNode(n2);
 	}
 

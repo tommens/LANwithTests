@@ -31,7 +31,7 @@ public class LAN {
 		w1.originate(p);
 
 		System.out.println();
-		p.setDestination(new Node("Printer3"));
+		p.setDestination(new Printserver("Printer3"));
 		w1.originate(p);
 
 		System.out.println();

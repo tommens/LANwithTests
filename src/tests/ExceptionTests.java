@@ -23,7 +23,7 @@ public class ExceptionTests {
 		s2 = new Printserver("My second printserver",w1);
 		s1.setNextNode(s2);
 		w2.setNextNode(s1);
-		p = new Packet("some text",new Node("My node"));
+		p = new Packet("some text",new Workstation("Unreacable workstation"));
 		p.setTracking(true);
 	}
 
