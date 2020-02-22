@@ -18,28 +18,26 @@ public class Workstation extends Node {
 		super(s, next);
 	}
 
-	public void originate(Packet p) {
-		try {
-			p.originator = this;
-			p.current = this;
-			this.send(p);
-			}
-		catch(UnknownDestinationException e)
-			{
-			System.err.println(e.toString());
-			}
+	@Override
+	public void accept(LANVisitor v) {
+		if (v.visitingPacket.originator == null) {
+			// visiting packet has not yet been initialised, so let's do it and start iterating
+			v.visitingPacket.originator = this;
+			this.send(v);
+		}
+		else if (v.visitingPacket.getDestination() == this) {
+			//package has reached its destination
+			v.visit(this); //visit this workstation and stop traversing
+		}
+		else if (v.visitingPacket.originator == this) {
+			//package has cycled through the entire network without finding its destination
+			v.visit(this);
+			System.out.println("Visitor has cycled through the network without finding destination node");
+		}
+		else {
+			v.visit(this);
+			this.send(v);
+		}
 	}
 
-	public void accept(Packet p) throws UnknownDestinationException {
-		if(p.originator == this) {
-			p.track("Packet has cycled through network without finding its destination");
-			throw new UnknownDestinationException(
-				"Packet has unknown destination " + p.getDestination()); }
-		else
-			if (p.getDestination() == this) {
-				p.track("Package has reached its destination " + this);
-			}
-			else
-			super.accept(p);
-	}
 }

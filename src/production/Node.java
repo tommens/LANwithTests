@@ -12,7 +12,6 @@ public abstract class Node {
 
 	private String name;
 
-
 	private Node nextNode;
 
 	public Node(String s) {
@@ -28,22 +27,17 @@ public abstract class Node {
 		return name;
 	}
 
-	public void accept(Packet p) throws UnknownDestinationException {
-		p.track("Node " + this + " accepts packet");
-		this.send(p);
-	}
+	public abstract void accept(LANVisitor v);
 
-	public void send(Packet p) throws UnknownDestinationException {
-		p.current = getNextNode();
-		p.track("Node " + this + " sends packet to next node " + getNextNode());
-		getNextNode().accept(p);
+	public void send(LANVisitor v) {
+		getNextNode().accept(v);
 	}
 
 	public Node getNextNode() {
 		return nextNode;
 	}
 
-	public void setNextNode(Node nextNode) {
-		this.nextNode = nextNode;
+	public void setNextNode(Node n) {
+		nextNode = n;
 	}
 }

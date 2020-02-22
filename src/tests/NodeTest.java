@@ -27,9 +27,15 @@ public class NodeTest {
 	}
 
 	@Test
-	public void testNextnode() {
-		assertEquals(n1.getNextNode(),n2);
-		assertEquals(n2.getNextNode(),n1);
+	public void testGetter() {
+		assertSame(n2,n1.getNextNode());
+		assertSame(n1,n2.getNextNode());
+	}
+
+	@Test
+	public void testSetter() {
+		n1.setNextNode(n1);
+		assertSame(n1,n1.getNextNode());
 	}
 
 }

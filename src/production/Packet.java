@@ -15,28 +15,17 @@ public class Packet {
 
 	private Node destination; // the target destination of the packet
 
-	public Node current; // the current node in the network where the packet is
-
-	public boolean tracked = false; // when set to true, prints extra info when running the code
-
-	public void setTracking(boolean t) {
-		tracked = t;
-	}
-
-	public void track(String s) {
-		if (tracked) System.out.println(s);
-	}
-
-	public Packet(String c, Node a) {
+	public Packet(String c, Node dest) {
 		contents = c;
-		setDestination(a);
+		setDestination(dest);
 	}
 
 	public Node getDestination() {
 		return destination;
 	}
 
-	public void setDestination(Node destination) {
-		this.destination = destination;
+	public void setDestination(Node n) {
+		destination = n;
 	}
+
 }

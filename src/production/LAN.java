@@ -8,11 +8,11 @@ public class LAN {
 
 	public static void main(String[] args) {
 
-		Workstation w1 = new Workstation("Workstation1");
-		Workstation w2 = new Workstation("Workstation2");
-		Workstation w3 = new Workstation("Workstation3");
-		Printserver ps1 = new Printserver("Printer1");
-		Printserver ps2 = new Printserver("Printer2");
+		Workstation w1 = new Workstation("w1");
+		Workstation w2 = new Workstation("w2");
+		Workstation w3 = new Workstation("w3");
+		Printserver ps1 = new Printserver("p1");
+		Printserver ps2 = new Printserver("p2");
 
 		w1.setNextNode(w2);
 		w2.setNextNode(ps1);
@@ -20,22 +20,32 @@ public class LAN {
 		w3.setNextNode(ps2);
 		ps2.setNextNode(w1);
 
+		System.out.println("******* Tracking visitor with printserver destination: *******");
 		Packet p = new Packet("BlahBlah", ps2);
+		TrackingVisitor tv = new TrackingVisitor(p);
+		w1.accept(tv); // visitor is given to the workstation to start iterating, should stop when ps2 is reached
 
-		//Send the packet p to its destination printserver ps2
-		System.out.println("******* Without tracking: *******");
-		w1.originate(p);
+		System.out.println("******* Processing visitor with printserver destination: *******");
+		ProcessingVisitor pv = new ProcessingVisitor(p);
+		w1.accept(pv); //visitor is given to the workstation to start iterating, should print contents of packet p on ps2
 
-	 	System.out.println("******* With tracking: *******");
-		p.setTracking(true);
-		w1.originate(p);
-
-		System.out.println();
+		System.out.println("******* Processing visitor with package without existing destination: *******");
 		p.setDestination(new Printserver("Printer3"));
-		w1.originate(p);
+		pv = new ProcessingVisitor(p);
+		w1.accept(pv);
 
-		System.out.println();
+		System.out.println("******* Tracking visitor with package without existing destination: *******");
+		tv = new TrackingVisitor(p);
+		w1.accept(tv);
+
+		System.out.println("******* Processing visitor with destination = some other workstation: *******");
 		p.setDestination(w3);
-		w1.originate(p);
+		pv = new ProcessingVisitor(p);
+		w1.accept(pv);
+
+		System.out.println("******* Tracking visitor with destination = some other workstation: *******");
+		p.setDestination(w3);
+		tv = new TrackingVisitor(p);
+		w1.accept(tv);
 	}
 }

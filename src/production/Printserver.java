@@ -22,13 +22,14 @@ public class Printserver extends Node {
 		System.out.println(this + " prints: " + p.contents);
 	}
 
-	public void accept(Packet p) throws UnknownDestinationException {
-		if(p.getDestination() == this) {
-			p.track("Package has reached its destination " + this);
-			this.print(p);
+	public void accept(LANVisitor v) {
+		if (v.visitingPacket.getDestination() == this) {
+			v.visit(this); // just visit the destination and stop iterating...
 		}
-		else
-			super.accept(p);
+		else {
+			v.visit(this);
+			this.send(v);
+		}
 	}
 
 }
