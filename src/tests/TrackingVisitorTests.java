@@ -7,8 +7,8 @@ import static org.junit.Assert.*;
 
 public class TrackingVisitorTests {
 
-    Workstation w1, w2, w3;
-    Printserver ps1, ps2;
+    private Workstation w1, w2, w3;
+    private Printserver ps1, ps2;
 
     @Before
     public void before() {
