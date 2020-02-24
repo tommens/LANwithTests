@@ -22,6 +22,7 @@ public class Printserver extends Node {
 		System.out.println(this + " prints: " + p.contents);
 	}
 
+	@Override
 	public void accept(LANVisitor v) {
 		if (v.visitingPacket.getDestination() == this) {
 			v.visit(this); // just visit the destination and stop iterating...

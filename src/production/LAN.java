@@ -47,5 +47,11 @@ public class LAN {
 		p.setDestination(w3);
 		tv = new TrackingVisitor(p);
 		w1.accept(tv);
+
+		System.out.println("*** Collecting visitor : ***");
+		p.setDestination(w1);
+		CollectingVisitor cv = new CollectingVisitor(p);
+		w1.accept(cv);
+		System.out.println(cv);
 	}
 }

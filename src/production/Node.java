@@ -30,7 +30,7 @@ public abstract class Node {
 	public abstract void accept(LANVisitor v);
 
 	public void send(LANVisitor v) {
-		getNextNode().accept(v);
+		nextNode.accept(v);
 	}
 
 	public Node getNextNode() {

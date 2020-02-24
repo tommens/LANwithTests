@@ -17,7 +17,7 @@ public abstract class LANVisitor {
      current = w;
  }
 
- public  void visit(Printserver ps) {
+ public void visit(Printserver ps) {
      current = ps;
  }
 
