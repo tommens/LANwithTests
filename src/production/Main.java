@@ -1,10 +1,17 @@
 package production;
 
+import production.LAN.Packet;
+import production.LAN.Printserver;
+import production.LAN.Workstation;
+import production.visitors.CollectingVisitor;
+import production.visitors.ProcessingVisitor;
+import production.visitors.TrackingVisitor;
+
 /**
  * @author tommens
  *
  */
-public class LAN {
+public class Main {
 
 	public static void main(String[] args) {
 

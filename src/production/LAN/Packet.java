@@ -1,11 +1,11 @@
-package production;
+package production.LAN;
 
 /**
  * @author tommens
  *
  * Instances of this class represent packets that can be sent over
- * the production.LAN to perform a certain task.For the time being, they can only be
- * printed on a production.Printserver.
+ * the token ring network to perform a certain task. For the time being, they can only be
+ * printed on a Printserver.
  * 
  */
 public class Packet {

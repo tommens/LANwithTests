@@ -1,4 +1,6 @@
-package production;
+package production.LAN;
+
+import production.visitors.LANVisitor;
 
 /**
  * @author tommens

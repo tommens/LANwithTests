@@ -1,7 +1,9 @@
-package tests;
+package tests.LANTests;
 
 import org.junit.*;
-import production.*;
+import production.LAN.Node;
+import production.LAN.Printserver;
+import production.LAN.Workstation;
 
 import static org.junit.Assert.*;
 

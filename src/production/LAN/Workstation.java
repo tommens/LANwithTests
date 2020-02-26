@@ -1,9 +1,11 @@
-package production;
+package production.LAN;
+
+import production.visitors.LANVisitor;
 
 /**
  * @author tommens
  *
- * A special kind of production.Node that has the additional functionality that it
+ * A special kind of node that has the additional functionality that it
  * can start sending packets over the network by means of the "originate"
  * method. Also, it avoids endless cycling of a packet through the network.
  * 

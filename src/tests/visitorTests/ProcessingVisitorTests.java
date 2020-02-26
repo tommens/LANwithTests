@@ -1,7 +1,10 @@
-package tests;
+package tests.visitorTests;
 
 import org.junit.*;
-import production.*;
+import production.LAN.Packet;
+import production.LAN.Printserver;
+import production.LAN.Workstation;
+import production.visitors.ProcessingVisitor;
 
 import static org.junit.Assert.*;
 

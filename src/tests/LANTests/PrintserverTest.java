@@ -1,9 +1,10 @@
-package tests;
+package tests.LANTests;
 
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import production.*;
+import production.LAN.Printserver;
+import production.LAN.Workstation;
 
 public class PrintserverTest {
     private Workstation w;

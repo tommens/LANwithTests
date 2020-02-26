@@ -1,4 +1,8 @@
-package production;
+package production.visitors;
+
+import production.LAN.Packet;
+import production.LAN.Printserver;
+import production.LAN.Workstation;
 
 import java.util.ArrayList;
 

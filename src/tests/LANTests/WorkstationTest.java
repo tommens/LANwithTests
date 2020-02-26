@@ -1,9 +1,9 @@
-package tests;
+package tests.LANTests;
 
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import production.*;
+import production.LAN.Workstation;
 
 public class WorkstationTest {
     private Workstation w;

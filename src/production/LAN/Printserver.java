@@ -1,11 +1,13 @@
-package production;
+package production.LAN;
+
+import production.visitors.LANVisitor;
 
 /**
  * @author tommens
  *
- * A special kind of production.Node that has the additional functionality that
- * allows it to print packets it receives, provided that the production.Printserver
- * node is the addressee of the production.Packet.
+ * A special kind of node that has the additional functionality that
+ * allows it to print packets it receives, provided that the printserver
+ * node is the addressee of the packet.
  * 
  */
 public class Printserver extends Node {
