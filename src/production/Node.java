@@ -20,7 +20,7 @@ public abstract class Node {
 
 	public Node(String s, Node n) {
 		this(s); //calls the constructor Node(String s)
-		nextNode =n;
+		setNextNode(n);
 	}
 
 	public String toString() {

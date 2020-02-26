@@ -41,13 +41,11 @@ public class CollectingVisitorTests {
         // create a tracking visitor with tracking packet with destination address w1
         CollectingVisitor v = new CollectingVisitor(new Packet("tracking packet", w1));
         w1.accept(v); // send this visitor over the network, starting from the destination node w1, the packet should do one full cycle over the network to return to this node
-        assertEquals(3,v.workstations.size());
-        assertTrue(v.workstations.contains(w1));
-        assertTrue(v.workstations.contains(w2));
-        assertTrue(v.workstations.contains(w3));
-        assertEquals(2,v.printservers.size());
-        assertTrue(v.printservers.contains(ps1));
-        assertTrue(v.printservers.contains(ps2));
+        assertTrue(v.contains(w1));
+        assertTrue(v.contains(w2));
+        assertTrue(v.contains(w3));
+        assertTrue(v.contains(ps1));
+        assertTrue(v.contains(ps2));
     }
 
     @Test
@@ -55,9 +53,8 @@ public class CollectingVisitorTests {
         // create a tracking visitor with tracking packet with destination address w1
         CollectingVisitor v = new CollectingVisitor(new Packet("tracking packet", w1));
         w1.accept(v); // send this visitor over the network, starting from the destination node w1, the packet should do one full cycle over the network to return to this node
-        assertEquals(2,v.printservers.size());
-        assertTrue(v.printservers.contains(ps1));
-        assertTrue(v.printservers.contains(ps2));
+        assertTrue(v.contains(ps1));
+        assertTrue(v.contains(ps2));
     }
 
 }

@@ -15,6 +15,7 @@ public class PacketTest {
 	private Packet p1,
 			       p2,
 			       p3;
+	@SuppressWarnings("FieldCanBeLocal")
 	private Workstation n1, n2;
 
 	@Before
@@ -28,11 +29,11 @@ public class PacketTest {
 
 	@Test
 	public void testPacketContents() {
-		assertEquals("Packet 1", p1.contents);
+		assertEquals("Packet 1", p1.toString());
 		// p1 and p2 have a different contents
 		assertNotSame(p1,p2);
 		// p2 and p3 have the same contents
-		assertEquals(p2.contents,p3.contents);
+		assertEquals(p2.toString(),p3.toString());
 	}
 
 	@Test
@@ -47,7 +48,7 @@ public class PacketTest {
 	@Test
 	public void testPacketOriginator() {
 		// upon creation, a packet has no originator
-		assertNull(p1.originator);
+		assertNull(p1.getOriginator());
 		// The originator of a packet will be set by a Workstation when it receives a visitor
 	}
 

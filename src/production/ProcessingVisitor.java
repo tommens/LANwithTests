@@ -10,14 +10,14 @@ public class ProcessingVisitor extends LANVisitor {
     @Override
     public void visit(Printserver ps) {
         super.visit(ps);
-        if (visitingPacket.getDestination() == ps)
+        if (getDestination() == ps)
             ps.print(visitingPacket);
     }
 
     @Override
     public void visit(Workstation w) {
         super.visit(w);
-        if (visitingPacket.getDestination() == w)
+        if (getDestination() == w)
             System.out.println("Packet has reached its destination workstation " + w);
     }
 

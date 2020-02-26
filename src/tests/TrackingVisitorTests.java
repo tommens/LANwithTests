@@ -40,9 +40,9 @@ public class TrackingVisitorTests {
     public void testOriginator() {
         w1.setNextNode(w1); // create a network of cycle length 1
         TrackingVisitor v = new TrackingVisitor(new Packet("contents",ps1));
-        assertSame(null,v.visitingPacket.originator);
+        assertSame(null,v.getSource());
         w1.accept(v);
-        assertSame(w1,v.visitingPacket.originator);
+        assertSame(w1,v.getSource());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class TrackingVisitorTests {
         // create a tracking visitor with tracking packet with destination address w1
         TrackingVisitor tv = new TrackingVisitor(new Packet("tracking packet", w1));
         w1.accept(tv); // send this visitor over the network, starting from the destination node w1, the packet should do one full cycle over the network to return to this node
-        assertSame(w1,tv.current); // after visiting, destination node must have been reached
+        assertSame(w1,tv.getCurrent()); // after visiting, destination node must have been reached
      }
 
     @Test
@@ -58,7 +58,7 @@ public class TrackingVisitorTests {
         // create a tracking visitor with tracking packet with destination address ps2
         TrackingVisitor tv = new TrackingVisitor(new Packet("tracking packet", ps2));
         w1.accept(tv); // visitor is given to the workstation to start iterating
-        assertSame(ps2,tv.current); // after visiting, destination node must have been reached
+        assertSame(ps2,tv.getCurrent()); // after visiting, destination node must have been reached
     }
 
     @Test
@@ -66,6 +66,6 @@ public class TrackingVisitorTests {
         // create a tracking visitor with tracking packet with destination address not in network
         TrackingVisitor tv = new TrackingVisitor(new Packet("tracking packet", new Printserver("Printer3")));
         w1.accept(tv); // visitor is given to the workstation to start iterating
-        assertSame(w1,tv.current); // after visiting, origin node of traversal, i.e., w1, must have been reached since the destination node did not exist
+        assertSame(w1,tv.getCurrent()); // after visiting, origin node of traversal, i.e., w1, must have been reached since the destination node did not exist
     }
 }

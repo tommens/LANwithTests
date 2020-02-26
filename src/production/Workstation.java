@@ -20,16 +20,16 @@ public class Workstation extends Node {
 
 	@Override
 	public void accept(LANVisitor v) {
-		if (v.visitingPacket.originator == null) {
+		if (v.getSource() == null) {
 			// visiting packet has not yet been initialised, so let's do it and start iterating
-			v.visitingPacket.originator = this;
+			v.setSource(this);
 			this.send(v);
 		}
-		else if (v.visitingPacket.getDestination() == this) {
+		else if (v.getDestination() == this) {
 			//package has reached its destination
 			v.visit(this); //visit this workstation and stop traversing
 		}
-		else if (v.visitingPacket.originator == this) {
+		else if (v.getSource() == this) {
 			//package has cycled through the entire network without finding its destination
 			v.visit(this);
 			System.out.println("Visitor has cycled through the network without finding destination node");

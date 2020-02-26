@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class CollectingVisitor extends LANVisitor {
 
-    public ArrayList<Workstation> workstations = new ArrayList<>();
-    public ArrayList<Printserver> printservers = new ArrayList<>();
+    private ArrayList<Workstation> workstations = new ArrayList<>();
+    private ArrayList<Printserver> printservers = new ArrayList<>();
 
     public CollectingVisitor(Packet p) {
         super(p);
@@ -31,6 +31,14 @@ public class CollectingVisitor extends LANVisitor {
         output += ".\nThe printservers are ";
         for (Printserver p: printservers) {output += p + " ";}
         return output+".\n";
+    }
+
+    public boolean contains(Workstation w) {
+        return workstations.contains(w);
+    }
+
+    public boolean contains(Printserver ps) {
+        return printservers.contains(ps);
     }
 
 }

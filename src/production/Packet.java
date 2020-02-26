@@ -9,9 +9,9 @@ package production;
  * 
  */
 public class Packet {
-	public String contents; // the contents of the packet
+	private String contents; // the contents of the packet
 
-	public Node originator; // the node where the packet originates from
+	private Node originator; // the node where the packet originates from
 
 	private Node destination; // the target destination of the packet
 
@@ -24,8 +24,17 @@ public class Packet {
 		return destination;
 	}
 
+	public Node getOriginator() {
+		return originator;
+	}
+
+	public void setOriginator(Node n) {
+		originator = n;
+	}
+
 	public void setDestination(Node n) {
 		destination = n;
 	}
 
+	public String toString() { return contents; }
 }
