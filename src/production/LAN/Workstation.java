@@ -6,8 +6,8 @@ import production.visitors.LANVisitor;
  * @author tommens
  *
  * A special kind of node that has the additional functionality that it
- * can start sending packets over the network by means of the "originate"
- * method. Also, it avoids endless cycling of a packet through the network.
+ * can start sending packets over the network when it accepts a visitor.
+ * Also, it avoids endless cycling of a packet through the network.
  * 
  */
 public class Workstation extends Node {

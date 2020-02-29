@@ -12,7 +12,7 @@ import production.visitors.LANVisitor;
  */
 public abstract class Node {
 
-	private String name;
+	private final String name;
 
 	private Node nextNode;
 

@@ -9,7 +9,7 @@ package production.LAN;
  * 
  */
 public class Packet {
-	private String contents; // the contents of the packet
+	private final String contents; // the contents of the packet
 
 	private Node originator; // the node where the packet originates from
 
@@ -17,7 +17,7 @@ public class Packet {
 
 	public Packet(String c, Node dest) {
 		contents = c;
-		setDestination(dest);
+		destination = dest;
 	}
 
 	public Node getDestination() {

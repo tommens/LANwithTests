@@ -8,7 +8,7 @@ import production.LAN.Workstation;
 // Visitor design pattern to allow to visit all nodes in a LAN
 public abstract class LANVisitor {
 
- protected Packet visitingPacket;
+ protected final Packet visitingPacket;
 
  // upon invocation of method visit, the visitor records the current node it is visiting, this is useful for testing purposes
  protected Node current;

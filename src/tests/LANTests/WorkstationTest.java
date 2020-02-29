@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 import production.LAN.Workstation;
 
 public class WorkstationTest {
-    private Workstation w;
 
     @Test
     public void test() {

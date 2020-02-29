@@ -7,7 +7,6 @@ import production.LAN.Printserver;
 import production.LAN.Workstation;
 
 public class PrintserverTest {
-    private Workstation w;
 
     @Test
     public void test() {

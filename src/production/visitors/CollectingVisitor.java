@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class CollectingVisitor extends LANVisitor {
 
-    private ArrayList<Workstation> workstations = new ArrayList<>();
-    private ArrayList<Printserver> printservers = new ArrayList<>();
+    private final ArrayList<Workstation> workstations = new ArrayList<>();
+    private final ArrayList<Printserver> printservers = new ArrayList<>();
 
     public CollectingVisitor(Packet p) {
         super(p);
@@ -28,13 +28,19 @@ public class CollectingVisitor extends LANVisitor {
      }
 
      public String toString() {
-        String output = "The token ring network contains " + workstations.size()+ " workstations and "
-                +  printservers.size() + " visitors.\n";
-        output += "The workstations are ";
-        for (Workstation w : workstations) { output +=  w + " ";}
-        output += ".\nThe printservers are ";
-        for (Printserver p: printservers) {output += p + " ";}
-        return output+".\n";
+        // use a StringBuilder rather than direct string concatenation for performance reasons.
+         final StringBuilder output = new StringBuilder();
+         output.append("The token ring network contains ")
+                 .append(workstations.size())
+                 .append(" workstations")
+                 .append(" and ")
+                 .append(printservers.size())
+                 .append(" printservers")
+                 .append(".\nThe workstations are: ");
+         workstations.forEach(w -> output.append(w).append(" "));
+         output.append("\nThe printservers are: ");
+         printservers.forEach(p -> output.append(p).append(" "));
+         return output.toString();
     }
 
     public boolean contains(Workstation w) {
