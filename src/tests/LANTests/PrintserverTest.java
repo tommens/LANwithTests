@@ -4,7 +4,6 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 import production.LAN.Printserver;
-import production.LAN.Workstation;
 
 public class PrintserverTest {
 
