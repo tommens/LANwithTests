@@ -1,8 +1,6 @@
 package production.visitors;
 
-import production.LAN.Packet;
-import production.LAN.Printserver;
-import production.LAN.Workstation;
+import production.LAN.*;
 
 // This visitor outputs all information obtained from each node in the LAN network it is traveling over
 public class TrackingVisitor extends LANVisitor {
@@ -12,9 +10,9 @@ public class TrackingVisitor extends LANVisitor {
     }
 
     @Override
-    public void visit(Printserver ps) {
+    public void visit(OutputServer ps) {
         super.visit(ps); // invoke the behaviour implemented in the superclass
-        System.out.println("Printserver " + ps + " receives visitor ");
+        System.out.println("OutputServer " + ps + " receives visitor ");
     }
 
     @Override

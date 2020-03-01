@@ -1,8 +1,6 @@
 package production.visitors;
 
-import production.LAN.Packet;
-import production.LAN.Printserver;
-import production.LAN.Workstation;
+import production.LAN.*;
 
 // This visitor outputs all information obtained from each node in the LAN network it is traveling over
 public class ProcessingVisitor extends LANVisitor {
@@ -12,10 +10,10 @@ public class ProcessingVisitor extends LANVisitor {
     }
 
     @Override
-    public void visit(Printserver ps) {
+    public void visit(OutputServer ps) {
         super.visit(ps);
         if (getDestination() == ps)
-            ps.print(visitingPacket);
+            ps.output(visitingPacket);
     }
 
     @Override

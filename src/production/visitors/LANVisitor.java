@@ -1,9 +1,6 @@
 package production.visitors;
 
-import production.LAN.Node;
-import production.LAN.Packet;
-import production.LAN.Printserver;
-import production.LAN.Workstation;
+import production.LAN.*;
 
 // Visitor design pattern to allow to visit all nodes in a LAN
 public abstract class LANVisitor {
@@ -22,7 +19,7 @@ public abstract class LANVisitor {
      current = w;
  }
 
- public void visit(Printserver ps) {
+ public void visit(OutputServer ps) {
      current = ps;
  }
 

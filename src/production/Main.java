@@ -15,7 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Network lan = new Network(Arrays.asList("workstation1", "workstation2", "printserver1", "workstation3", "printserver2"));
+		Network lan = new Network(Arrays.asList("workstation1", "workstation2", "printserver1", "workstation3", "fileserver1", "printserver2"));
 
 		// find the first node of the Workstation in the network and use this as originator node in the code later on.
 		Node originator = lan.findNode(Workstation.class);
@@ -31,7 +31,10 @@ public class Main {
 
 		System.out.println("******* Processing visitor with printserver destination: *******");
 		originator.accept(new ProcessingVisitor(p));
-		//w1.accept(pv); //visitor is given to the workstation to start iterating, should print contents of packet p on ps2
+
+		System.out.println("******* Processing visitor with fileserver destination: *******");
+		p.setDestination(lan.findNode("fileserver1"));
+		originator.accept(new ProcessingVisitor(p));
 
 		System.out.println("******* Processing visitor with package without existing destination: *******");
 		p.setDestination(new Printserver("printer4"));

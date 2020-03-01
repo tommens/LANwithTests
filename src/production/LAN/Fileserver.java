@@ -8,19 +8,19 @@ package production.LAN;
  * node is the addressee of the packet.
  * 
  */
-public class Printserver extends OutputServer {
-	
-	public Printserver(String s) {
+public class Fileserver extends OutputServer {
+
+	public Fileserver(String s) {
 		super(s);
 	}
 
-	public Printserver(String s, Node next) {
+	public Fileserver(String s, Node next) {
 		super(s, next);
 	}
-	
+
 	@Override
 	public void output(Packet p) {
-		System.out.println(this + " prints: " + p.toString());
+		System.out.println(this + " saves contents " + p.toString() + " to file.");
 	}
 
 

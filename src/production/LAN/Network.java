@@ -39,6 +39,13 @@ public class Network {
             } else if (n.contains("printserver")) {
                 nodes.add(new Printserver(n));
             }
+            else if (n.contains("fileserver")) {
+                nodes.add(new Fileserver(n));
+            }
+            else {
+                // TO DO ERROR CHECKING IF NONE OF THE CASES IS SATISFIED!
+                System.out.println("The string " + n + " cannot be matched to any of the known node types!");
+            }
         }
         this.makeCircular();
     }

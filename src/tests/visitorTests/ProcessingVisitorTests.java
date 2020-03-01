@@ -16,7 +16,7 @@ public class ProcessingVisitorTests {
     @Before
     public void before() {
         // create a small token ring network to be used by each test
-        lan = new Network(Arrays.asList("workstation1","workstation2","printserver1","workstation3","printserver2"));
+        lan = new Network(Arrays.asList("workstation1","workstation2","printserver1","workstation3","fileserver1","printserver2"));
         originator = lan.findNode("workstation1");
     }
 
@@ -37,7 +37,7 @@ public class ProcessingVisitorTests {
     }
 
     @Test
-    public void test1() {
+    public void testSendingBackToOrigin() {
         // create a processing visitor with packet with destination address == originator
         ProcessingVisitor v = new ProcessingVisitor(new Packet("tracking packet", originator));
         originator.accept(v); // send this visitor over the network, starting from the destination node w1, the packet should do one full cycle over the network to return to this node
@@ -45,16 +45,25 @@ public class ProcessingVisitorTests {
     }
 
     @Test
-    public void test2() {
-        // create a processing visitor with packet with as destination a printserver ps2
-        Node ps2 = lan.findNode("printserver2");
-        ProcessingVisitor v = new ProcessingVisitor(new Packet("tracking packet", ps2));
+    public void testPrintserverDestination() {
+        // create a processing visitor with packet with as destination a printserver
+        Node ps = lan.findNode("printserver2");
+        ProcessingVisitor v = new ProcessingVisitor(new Packet("packet to be printed", ps));
         originator.accept(v); // visitor is given to the workstation to start iterating
-        assertSame(ps2,v.getCurrent()); // after visiting, destination node must have been reached
+        assertSame(ps,v.getCurrent()); // after visiting, destination printserver must have been reached
     }
 
     @Test
-    public void test3() {
+    public void testFileserverDestination() {
+        // create a processing visitor with packet with as destination a fileserver
+        Node fs = lan.findNode("fileserver1");
+        ProcessingVisitor v = new ProcessingVisitor(new Packet("packet to be saved", fs));
+        originator.accept(v); // visitor is given to the workstation to start iterating
+        assertSame(fs,v.getCurrent()); // after visiting, destination filesever must have been reached
+    }
+
+    @Test
+    public void testSendingToUnknownDestination() {
         // create a processing visitor with packet with destination address not in network
         ProcessingVisitor v = new ProcessingVisitor(new Packet("tracking packet", new Printserver("Printer3")));
         originator.accept(v); // visitor is given to the workstation to start iterating
