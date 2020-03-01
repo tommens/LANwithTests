@@ -24,30 +24,30 @@ public class NetworkCreationTest {
 
 	@Test
 	public void testUnkwownNodesInNetwork() {
-		assertNull(lan.findWorkstation("printserver1")); // printserver1 is not a Workstation so cannot be found
-		assertNull(lan.findPrintserver("workstation1")); // workstation1 is not a Printserver so cannot be found
-		assertNull(lan.findWorkstation("workstation3")); // name does not correspond to a known node name in network
-		assertNull(lan.findWorkstation("printserver2")); // name does not correspond to a known node name in network
+		assertNull(lan.findNode("workstation3")); // name does not correspond to a known node name in network
+		assertNull(lan.findNode("printserver2")); // name does not correspond to a known node name in network
 	}
 
 	@Test
 	public void testIfNodesHaveCorrectType() {
-		assertSame(lan.findWorkstation("workstation1").getClass(),Workstation.class);
-		assertSame(lan.findWorkstation("workstation2").getClass(),Workstation.class);
-		assertSame(lan.findPrintserver("printserver1").getClass(),Printserver.class);
+		assertSame(lan.findNode(Workstation.class).getClass(),Workstation.class);
+		assertSame(lan.findNode("workstation1").getClass(),Workstation.class);
+		assertSame(lan.findNode("workstation2").getClass(),Workstation.class);
+		assertSame(lan.findNode(Printserver.class).getClass(),Printserver.class);
+		assertSame(lan.findNode("printserver1").getClass(),Printserver.class);
 	}
 
 	@Test
 	public void testNodeNames() {
-		assertEquals("printserver1",lan.findPrintserver("printserver1").toString());
-		assertEquals("workstation2",lan.findWorkstation("workstation2").toString());
+		assertEquals("printserver1",lan.findNode("printserver1").toString());
+		assertEquals("workstation2",lan.findNode("workstation2").toString());
 	}
 
 	@Test
 	public void testCircularity() {
-		assertSame(lan.findWorkstation("workstation1").getNextNode(),lan.findWorkstation("workstation2"));
-		assertSame(lan.findWorkstation("workstation2").getNextNode(),lan.findPrintserver("printserver1"));
-		assertSame(lan.findPrintserver("printserver1").getNextNode(),lan.findWorkstation("workstation1"));
+		assertSame(lan.findNode("workstation1").getNextNode(),lan.findNode("workstation2"));
+		assertSame(lan.findNode("workstation2").getNextNode(),lan.findNode("printserver1"));
+		assertSame(lan.findNode("printserver1").getNextNode(),lan.findNode("workstation1"));
 	}
 
 }

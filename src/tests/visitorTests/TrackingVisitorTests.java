@@ -1,10 +1,7 @@
 package tests.visitorTests;
 
 import org.junit.*;
-import production.LAN.Network;
-import production.LAN.Packet;
-import production.LAN.Printserver;
-import production.LAN.Workstation;
+import production.LAN.*;
 import production.visitors.TrackingVisitor;
 
 import java.util.Arrays;
@@ -14,14 +11,14 @@ import static org.junit.Assert.*;
 public class TrackingVisitorTests {
 
     private Network lan;
-    private Workstation originator;
+    private Node originator;
     private TrackingVisitor v;
 
     @Before
     public void before() {
         // create a small token ring network to be used by each test
         lan = new Network(Arrays.asList("workstation1","workstation2","printserver1","workstation3","printserver2"));
-        originator = lan.findWorkstation("workstation1");
+        originator = lan.findNode("workstation1");
     }
 
     @After
@@ -34,7 +31,7 @@ public class TrackingVisitorTests {
     @Test
     public void testOriginator() {
         originator.setNextNode(originator); // create a network of cycle length 1
-        v = new TrackingVisitor(new Packet("contents",lan.findWorkstation("printserver1")));
+        v = new TrackingVisitor(new Packet("contents",lan.findNode("printserver1")));
         assertSame(null,v.getSource());
         originator.accept(v);
         assertSame(originator,v.getSource());
@@ -51,7 +48,7 @@ public class TrackingVisitorTests {
     @Test
     public void test2() {
         // create a tracking visitor with tracking packet with destination address ps2
-        Printserver ps2 = lan.findPrintserver("printserver2");
+        Node ps2 = lan.findNode("printserver2");
         v = new TrackingVisitor(new Packet("tracking packet", ps2));
         originator.accept(v); // visitor is given to the workstation to start iterating
         assertSame(ps2,v.getCurrent()); // after visiting, destination node must have been reached

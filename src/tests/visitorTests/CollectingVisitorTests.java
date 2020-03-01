@@ -27,22 +27,22 @@ public class CollectingVisitorTests {
     @Test
     public void testCollectedWorkstations() {
         // create a collecting visitor with packet with destination address w1
-        Workstation w1 = lan.findWorkstation("workstation1");
+        Node w1 = lan.findNode("workstation1");
         CollectingVisitor v = new CollectingVisitor(new Packet("tracking packet", w1));
         w1.accept(v); // send this visitor over the network, starting from the destination node w1, the packet should do one full cycle over the network to return to this node
-        assertTrue(v.contains(w1));
-        assertTrue(v.contains(lan.findWorkstation("workstation2")));
-        assertTrue(v.contains(lan.findWorkstation("workstation3")));
+        assertTrue(v.containsWorkstation(w1));
+        assertTrue(v.containsWorkstation(lan.findNode("workstation2")));
+        assertTrue(v.containsWorkstation(lan.findNode("workstation3")));
      }
 
     @Test
     public void testCollectedPrintservers() {
         // create a collecting visitor with packet with destination address w1
-        Workstation w1 = lan.findWorkstation("workstation1");
+        Node w1 = lan.findNode("workstation1");
         CollectingVisitor v = new CollectingVisitor(new Packet("tracking packet", w1));
         w1.accept(v); // send this visitor over the network, starting from the destination node w1, the packet should do one full cycle over the network to return to this node
-        assertTrue(v.contains(lan.findPrintserver("printserver1")));
-        assertTrue(v.contains(lan.findPrintserver("printserver2")));
+        assertTrue(v.containsPrintserver(lan.findNode("printserver1")));
+        assertTrue(v.containsPrintserver(lan.findNode("printserver2")));
     }
 
 }

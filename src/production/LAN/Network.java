@@ -43,32 +43,30 @@ public class Network {
         this.makeCircular();
     }
 
-    // Returns the first workstation in the network with name s.
-    // Returns null if the network does not contain any such workstation.
-    public Workstation findWorkstation(String s) {
-        Workstation w = null;
-        for (Node n: nodes) {
-            if ((n instanceof Workstation) && (n.toString().equals(s))) {
-                w = (Workstation) n; // select the  workstation with name s
+    // look for the first node in the network that has a specific name s.
+    // returns null if no such node exists in the network.
+    public Node findNode(String s) {
+        Node w = null;
+        for (Node n:nodes) {
+            if (n.toString().equals(s)) {
+                w= n; // find the first node with the specified name in the network
                 break; // stop iterating from the loop
             }
         }
-        // return the workstation found, or null if no such workstation exists
-        return w;
+         return w;
     }
 
-    // Returns the first printserver in the network.
-    // Returns null if the network does not contain any printserver.
-    public Printserver findPrintserver(String s) {
-        Printserver w = null;
-        for (Node n: nodes) {
-            if ((n instanceof Printserver) && (n.toString().equals(s))) {
-                w = (Printserver) n; // find the first printserver in the network
+    // !!! USE OF REFLECTION MECHANISM IN JAVA SINCE A CLASS IS PASSED AS ARGUMENT INSTEAD OF AN OBJECT... !!!
+    // look for the first node in the network that has a specific type (e.g. Workstation.class, Printserver.class).
+    // returns null if no such node exists in the network.
+    public Node findNode(Class<?> type) {
+        Node w = null;
+        for (Node n:nodes) {
+            if (n.getClass().equals(type)) {
+                w= n; // find the first node of the specified type in the network
                 break; // stop iterating from the loop
             }
         }
-        // return the printserver found, or null if no such printserver exists
         return w;
     }
-
 }

@@ -1,8 +1,6 @@
 package production.visitors;
 
-import production.LAN.Packet;
-import production.LAN.Printserver;
-import production.LAN.Workstation;
+import production.LAN.*;
 
 import java.util.ArrayList;
 
@@ -43,11 +41,11 @@ public class CollectingVisitor extends LANVisitor {
          return output.toString();
     }
 
-    public boolean contains(Workstation w) {
+    public boolean containsWorkstation(Node w) {
         return workstations.contains(w);
     }
 
-    public boolean contains(Printserver ps) {
+    public boolean containsPrintserver(Node ps) {
         return printservers.contains(ps);
     }
 
