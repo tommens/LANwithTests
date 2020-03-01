@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class ProcessingVisitorTests {
 
     private Network lan;
-    Node originator;
+    private Node originator;
 
     @Before
     public void before() {
